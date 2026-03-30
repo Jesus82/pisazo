@@ -9,13 +9,25 @@ const props = defineProps<{
 const mapContainer = ref<HTMLDivElement | null>(null)
 const mapInstance = ref<any>(null)
 
+// Build a slug->zone lookup for matching GeoJSON features to zones
+const zoneBySlug = computed(() => {
+  const map = new Map<string, Zone>()
+  for (const z of props.zones) {
+    map.set(z.slug, z)
+  }
+  return map
+})
+
 onMounted(async () => {
   if (!mapContainer.value) return
 
   const L = await import('leaflet')
   await import('leaflet/dist/leaflet.css')
 
-  const map = L.map(mapContainer.value).setView([43.3623, -8.4115], 13)
+  const map = L.map(mapContainer.value, {
+    scrollWheelZoom: false,
+  }).setView([43.3570, -8.4060], 13)
+
   mapInstance.value = map
 
   L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
@@ -23,27 +35,67 @@ onMounted(async () => {
     maxZoom: 19,
   }).addTo(map)
 
-  // Add zone circles
-  for (const zone of props.zones) {
-    const priceM2 = props.notariadoData?.get(zone.id)
-    const color = priceM2 ? getColor(priceM2) : '#3579a8'
+  // Load district boundaries GeoJSON
+  try {
+    const response = await fetch('/districts.geojson')
+    const geojson = await response.json()
 
-    const circle = L.circle([zone.lat, zone.lng], {
-      radius: zone.radiusM,
-      color,
-      fillColor: color,
-      fillOpacity: 0.2,
-      weight: 2,
+    L.geoJSON(geojson, {
+      style: (feature: any) => {
+        const slug = feature?.properties?.slug
+        const zone = slug ? zoneBySlug.value.get(slug) : null
+        const priceM2 = zone ? props.notariadoData?.get(zone.id) : null
+        const color = priceM2 ? getColor(priceM2) : '#3579a8'
+
+        return {
+          color,
+          weight: 2,
+          opacity: 0.8,
+          fillColor: color,
+          fillOpacity: 0.2,
+          dashArray: '',
+        }
+      },
+      onEachFeature: (feature: any, layer: any) => {
+        const slug = feature?.properties?.slug
+        const name = feature?.properties?.name || slug
+        const zone = slug ? zoneBySlug.value.get(slug) : null
+        const priceM2 = zone ? props.notariadoData?.get(zone.id) : null
+
+        const tooltip = priceM2
+          ? `<strong>${name}</strong><br/>${priceM2.toLocaleString('es-ES')} €/m²`
+          : `<strong>${name}</strong>`
+
+        layer.bindTooltip(tooltip, { sticky: true })
+
+        // Hover highlight
+        layer.on('mouseover', () => {
+          layer.setStyle({
+            weight: 3,
+            fillOpacity: 0.35,
+          })
+          layer.bringToFront()
+        })
+
+        layer.on('mouseout', () => {
+          layer.setStyle({
+            weight: 2,
+            fillOpacity: 0.2,
+          })
+        })
+
+        // Click to navigate
+        if (slug) {
+          layer.on('click', () => {
+            navigateTo(`/zones/${slug}`)
+          })
+          layer.setStyle({ cursor: 'pointer' })
+        }
+      },
     }).addTo(map)
-
-    const tooltip = priceM2
-      ? `<strong>${zone.name}</strong><br/>${priceM2.toLocaleString('es-ES')} €/m²`
-      : `<strong>${zone.name}</strong>`
-
-    circle.bindTooltip(tooltip, { permanent: false })
-    circle.on('click', () => {
-      navigateTo(`/zones/${zone.slug}`)
-    })
+  }
+  catch (err) {
+    console.error('Failed to load district boundaries:', err)
   }
 })
 
@@ -65,9 +117,13 @@ onUnmounted(() => {
 
 <style scoped>
 .zone-map {
-  height: 400px;
+  height: 450px;
   width: 100%;
   border-radius: var(--border-radius-lg);
   z-index: 0;
+}
+
+.zone-map :deep(.leaflet-interactive) {
+  cursor: pointer;
 }
 </style>
