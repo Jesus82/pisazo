@@ -2,6 +2,7 @@ import 'dotenv/config'
 import { createClient } from '@libsql/client'
 import { drizzle } from 'drizzle-orm/libsql'
 import { collectIdealista } from './collect-idealista'
+import { collectNotariado } from './collect-notariado'
 import { computeMetrics } from './compute-metrics'
 
 async function main() {
@@ -24,9 +25,9 @@ async function main() {
   console.log('\n📈 Step 2: Computing market metrics...')
   await computeMetrics(db, today)
 
-  // Step 3: Notariado data (monthly — check if new data available)
-  // TODO: Implement in Phase 2
-  console.log('\n📋 Step 3: Notariado data — skipped (monthly check, not yet implemented)')
+  // Step 3: Notariado data (public ArcGIS FeatureServer, no auth needed)
+  console.log('\n📋 Step 3: Collecting Notariado data...')
+  await collectNotariado(db, today)
 
   console.log('\n✅ Collection complete!\n')
   process.exit(0)
