@@ -1,0 +1,64 @@
+@layer layouts {
+  .l-general {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  .l-main {
+    flex: 1;
+    position: relative;
+  }
+
+  .l-container {
+    width: 100%;
+    max-width: var(--layout-width);
+    margin-inline: auto;
+    padding-inline: var(--spacing-base);
+  }
+
+  .l-container--medium {
+    max-width: var(--max-w-container-medium);
+  }
+
+  .l-container--large {
+    max-width: var(--max-w-container-large);
+  }
+
+  .l-section {
+    padding-block: var(--spacing-fourth);
+  }
+
+  .l-section--compact {
+    padding-block: var(--spacing-second);
+  }
+
+  .l-grid {
+    display: grid;
+    gap: var(--spacing-base);
+  }
+
+  .l-grid--2 {
+    grid-template-columns: 1fr;
+  }
+
+  .l-grid--3 {
+    grid-template-columns: 1fr;
+  }
+
+  @media (min-width: 600px) {
+    .l-grid--2 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .l-grid--3 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 900px) {
+    .l-grid--3 {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+}

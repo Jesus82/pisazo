@@ -1,0 +1,44 @@
+@layer generic {
+  html {
+    font-family: var(--font-sans);
+    font-size: var(--font-size-base);
+    line-height: var(--leading);
+    color: var(--gris-90);
+    background-color: var(--white);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 600;
+    line-height: 1.2;
+    margin-top: 0;
+  }
+
+  h1 { font-size: var(--font-size-4xl); }
+  h2 { font-size: var(--font-size-3xl); }
+  h3 { font-size: var(--font-size-2xl); }
+  h4 { font-size: var(--font-size-xl); }
+
+  a {
+    color: var(--blue);
+    text-decoration: none;
+    transition: color 0.2s var(--ease-out-quad);
+  }
+
+  a:hover {
+    color: var(--blue-dark);
+  }
+
+  img, svg {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+}

@@ -1,0 +1,100 @@
+@layer config {
+  :root {
+    /* ─── Colors ─── */
+    --white: hsl(0, 0%, 100%);
+    --black: hsl(220, 20%, 10%);
+
+    /* Primary — Ocean Blue (Atlantic / A Coruña) */
+    --blue-lightest: hsl(205, 80%, 95%);
+    --blue-lighter: hsl(205, 70%, 85%);
+    --blue-light: hsl(205, 65%, 70%);
+    --blue: hsl(205, 60%, 45%);
+    --blue-dark: hsl(205, 65%, 30%);
+    --blue-darkest: hsl(205, 70%, 18%);
+
+    /* Accent — Sand / Gold */
+    --sand-light: hsl(40, 60%, 90%);
+    --sand: hsl(38, 55%, 65%);
+    --sand-dark: hsl(36, 50%, 45%);
+
+    /* Semantic — Green (price up / positive) */
+    --green-light: hsl(145, 50%, 90%);
+    --green: hsl(145, 55%, 42%);
+    --green-dark: hsl(145, 60%, 28%);
+
+    /* Semantic — Red (price down / negative) */
+    --red-light: hsl(0, 65%, 93%);
+    --red: hsl(0, 60%, 50%);
+    --red-dark: hsl(0, 65%, 35%);
+
+    /* Gray Scale */
+    --gris-2: hsl(220, 15%, 98%);
+    --gris-5: hsl(220, 12%, 95%);
+    --gris-7: hsl(220, 10%, 93%);
+    --gris-10: hsl(220, 10%, 90%);
+    --gris-15: hsl(220, 8%, 85%);
+    --gris-20: hsl(220, 8%, 80%);
+    --gris-30: hsl(220, 6%, 70%);
+    --gris-40: hsl(220, 5%, 60%);
+    --gris-50: hsl(220, 4%, 50%);
+    --gris-60: hsl(220, 5%, 40%);
+    --gris-70: hsl(220, 6%, 30%);
+    --gris-80: hsl(220, 8%, 20%);
+    --gris-90: hsl(220, 10%, 12%);
+
+    /* ─── Typography ─── */
+    --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+    --font-serif: Georgia, 'Times New Roman', serif;
+    --font-display: 'Inter', system-ui, sans-serif;
+    --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+    /* Fluid type scale (clamp) */
+    --font-size-2xs: clamp(0.625rem, 0.58rem + 0.18vw, 0.75rem);
+    --font-size-xs: clamp(0.75rem, 0.7rem + 0.2vw, 0.875rem);
+    --font-size-sm: clamp(0.8125rem, 0.77rem + 0.22vw, 0.9375rem);
+    --font-size-base: clamp(0.9375rem, 0.88rem + 0.28vw, 1.0625rem);
+    --font-size-md: clamp(1.0625rem, 0.98rem + 0.35vw, 1.25rem);
+    --font-size-lg: clamp(1.25rem, 1.13rem + 0.5vw, 1.5rem);
+    --font-size-xl: clamp(1.5rem, 1.33rem + 0.7vw, 1.875rem);
+    --font-size-2xl: clamp(1.875rem, 1.63rem + 1vw, 2.375rem);
+    --font-size-3xl: clamp(2.25rem, 1.88rem + 1.5vw, 3rem);
+    --font-size-4xl: clamp(2.75rem, 2.2rem + 2.2vw, 3.75rem);
+    --font-size-5xl: clamp(3.25rem, 2.5rem + 3vw, 4.75rem);
+
+    --leading: 1.618;
+
+    /* ─── Spacing (fluid) ─── */
+    --spacing-sixteenth: clamp(0.125rem, 0.1rem + 0.1vw, 0.1875rem);
+    --spacing-eighth: clamp(0.25rem, 0.2rem + 0.2vw, 0.375rem);
+    --spacing-quarter: clamp(0.5rem, 0.42rem + 0.35vw, 0.75rem);
+    --spacing-half: clamp(0.75rem, 0.63rem + 0.5vw, 1.125rem);
+    --spacing-base: clamp(1rem, 0.85rem + 0.6vw, 1.5rem);
+    --spacing-second: clamp(1.5rem, 1.28rem + 0.9vw, 2.25rem);
+    --spacing-third: clamp(2rem, 1.7rem + 1.2vw, 3rem);
+    --spacing-fourth: clamp(3rem, 2.55rem + 1.8vw, 4.5rem);
+    --spacing-fifth: clamp(4rem, 3.4rem + 2.4vw, 6rem);
+
+    /* ─── Container widths ─── */
+    --max-w-container-medium: 780px;
+    --max-w-container-large: 1040px;
+    --max-w-container-x-large: 1200px;
+    --layout-width: 1250px;
+
+    /* ─── Easing ─── */
+    --ease-out-quad: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    --ease-out-cubic: cubic-bezier(0.215, 0.61, 0.355, 1);
+    --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+    --ease-in-out-cubic: cubic-bezier(0.645, 0.045, 0.355, 1);
+
+    /* ─── Misc ─── */
+    --border-radius-sm: 4px;
+    --border-radius-md: 8px;
+    --border-radius-lg: 12px;
+    --border-radius-xl: 16px;
+    --border-radius-full: 9999px;
+
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.08), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.08), 0 4px 6px -4px rgb(0 0 0 / 0.03);
+  }
+}

@@ -1,0 +1,25 @@
+/* ─── ITCSS Layer Cascade ─── */
+@layer config, generic, layouts, objects, utilities, transitions;
+
+/* ─── Config ─── */
+@import './config/config.css';
+
+/* ─── Generic ─── */
+@import './generic/_generic.reset.css';
+@import './generic/_generic.base.css';
+
+/* ─── Layouts ─── */
+@import './layouts/_layouts.general.css';
+
+/* ─── Objects ─── */
+/* @import './objects/_objects.button.css'; */
+/* @import './objects/_objects.card.css'; */
+
+/* ─── Utilities ─── */
+@import './utilities/_utilities.generic.css';
+
+/* ─── Transitions ─── */
+/* @import './transitions/_transitions.general.css'; */
+
+/* ─── Tailwind ─── */
+@tailwind utilities;

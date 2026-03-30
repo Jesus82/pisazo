@@ -1,0 +1,43 @@
+{
+  "name": "pisazo",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate",
+    "db:push": "drizzle-kit push",
+    "db:studio": "drizzle-kit studio",
+    "collect": "npx tsx scripts/collect.ts",
+    "seed:zones": "npx tsx scripts/seed-zones.ts"
+  },
+  "dependencies": {
+    "@csstools/postcss-global-data": "^4.0.0",
+    "@libsql/client": "^0.17.2",
+    "@nuxt/image": "^2.0.0",
+    "@nuxtjs/sitemap": "^8.0.11",
+    "@vueuse/nuxt": "^14.2.1",
+    "autoprefixer": "^10.4.27",
+    "dayjs-nuxt": "^2.1.11",
+    "drizzle-orm": "^0.45.2",
+    "nuxt": "^4.4.2",
+    "nuxt-schema-org": "^6.0.4",
+    "postcss": "^8.5.8",
+    "postcss-custom-media": "^12.0.1",
+    "tailwindcss": "^3.4.19",
+    "vue": "^3.5.30",
+    "vue-router": "^5.0.4"
+  },
+  "devDependencies": {
+    "@nuxt/eslint": "^1.15.2",
+    "dotenv": "^17.3.1",
+    "drizzle-kit": "^0.31.10",
+    "eslint": "^10.1.0"
+  }
+}
