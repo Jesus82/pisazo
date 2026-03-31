@@ -64,6 +64,36 @@ export const notariadoStats = sqliteTable('notariado_stats', {
   uniqueIndex('notariado_stats_zone_month_idx').on(table.zoneId, table.month),
 ])
 
+// ─── INE IPVA ───
+// Housing Price Index by district (INE experimental: table 59061)
+// Base 100 = 2015. Quarterly. District-level for A Coruña city.
+export const ineIpva = sqliteTable('ine_ipva', {
+  id: integer('id').primaryKey({ autoIncrement: true }),
+  districtCode: text('district_code').notNull(), // INE census district: "01"–"10"
+  quarter: text('quarter').notNull(), // YYYY-QN (e.g. "2025-Q3")
+  indexValue: real('index_value'), // Price index (base 100 = 2015)
+  annualVariation: real('annual_variation'), // % year-on-year change
+  source: text('source').notNull().default('INE-IPVA'), // series code e.g. IPVA7897
+}, (table) => [
+  uniqueIndex('ine_ipva_district_quarter_idx').on(table.districtCode, table.quarter),
+])
+
+// ─── Registradores ───
+// Provincial residential transaction data from Colegio de Registradores
+// Quarterly. Source: opendata.registradores.org
+export const registradoresStats = sqliteTable('registradores_stats', {
+  id: integer('id').primaryKey({ autoIncrement: true }),
+  province: text('province').notNull().default('A Coruña'),
+  quarter: text('quarter').notNull(), // YYYY-QN
+  numSales: integer('num_sales'), // Total residential sales
+  avgPrice: real('avg_price'), // Average price per transaction (EUR)
+  avgPriceM2: real('avg_price_m2'), // Average price per m²
+  numGarageSales: integer('num_garage_sales'),
+  avgGaragePrice: real('avg_garage_price'),
+}, (table) => [
+  uniqueIndex('registradores_province_quarter_idx').on(table.province, table.quarter),
+])
+
 // ─── Market Metrics ───
 // Daily derived/aggregated metrics per zone
 export const marketMetrics = sqliteTable('market_metrics', {

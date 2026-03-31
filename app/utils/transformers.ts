@@ -8,6 +8,10 @@ import type { DbMarketMetric } from '~/types/market'
 import type { MarketMetric } from '~/types/market'
 import type { DbNotariadoStat } from '~/types/notariado'
 import type { NotariadoStat } from '~/types/notariado'
+import type { DbIneIpva } from '~/types/ine'
+import type { IneIpva } from '~/types/ine'
+import type { DbRegistradoresStats } from '~/types/registradores'
+import type { RegistradoresStats } from '~/types/registradores'
 
 export const transformZone = (db: DbZone): Zone => ({
   id: db.id,
@@ -78,4 +82,24 @@ export const transformNotariadoStat = (db: DbNotariadoStat): NotariadoStat => ({
   avgSurfaceM2: db.avg_surface_m2,
   numTransactions: db.num_transactions,
   pctForeignBuyers: db.pct_foreign_buyers,
+})
+
+export const transformIneIpva = (db: DbIneIpva): IneIpva => ({
+  id: db.id,
+  districtCode: db.district_code,
+  quarter: db.quarter,
+  indexValue: db.index_value,
+  annualVariation: db.annual_variation,
+  source: db.source,
+})
+
+export const transformRegistradoresStats = (db: DbRegistradoresStats): RegistradoresStats => ({
+  id: db.id,
+  province: db.province,
+  quarter: db.quarter,
+  numSales: db.num_sales,
+  avgPrice: db.avg_price,
+  avgPriceM2: db.avg_price_m2,
+  numGarageSales: db.num_garage_sales,
+  avgGaragePrice: db.avg_garage_price,
 })
