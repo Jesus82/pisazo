@@ -4,6 +4,15 @@ A Nuxt 4 web application that tracks apartment prices in A Coruña by combining 
 
 **Live:** [pisazo.netlify.app](https://pisazo.netlify.app)
 
+## Documentation
+
+| Document | Description |
+|----------|-------------|
+| [Data Ingestion](docs/data-ingestion.md) | How we collect data from each source — endpoints, auth, scripts, target tables |
+| [Data Model](docs/data-model.md) | What each source measures, its limitations, and how sources complement each other |
+| [Cron Pipeline](docs/CRON.md) | Daily collection schedule, steps, secrets, monitoring |
+| [Project Plan](docs/PLAN.md) | Original architecture plan and phased implementation |
+
 ## System Design Overview
 
 ### Architecture Diagram
