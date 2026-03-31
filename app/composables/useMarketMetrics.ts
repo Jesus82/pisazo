@@ -1,4 +1,5 @@
-import type { Zone, MarketMetric } from '~/types'
+import type { Zone } from '~/types/zone'
+import type { MarketMetric } from '~/types/market'
 
 interface MetricsResponse {
   zone: Zone

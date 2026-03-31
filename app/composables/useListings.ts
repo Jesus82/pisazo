@@ -1,4 +1,4 @@
-import type { Listing, ListingWithHistory } from '~/types'
+import type { Listing, ListingWithHistory } from '~/types/listing'
 
 export function useListings(zone?: MaybeRef<string>) {
   const zoneVal = zone ? toValue(zone) : undefined
@@ -6,7 +6,7 @@ export function useListings(zone?: MaybeRef<string>) {
   const query = zoneVal ? { zone: zoneVal } : {}
 
   return useAsyncData(key, () => $fetch<Listing[]>('/api/listings', { query }), {
-    default: () => [],
+    default: () => [] as Listing[],
   })
 }
 

@@ -1,8 +1,8 @@
-import type { Zone, ZoneWithMetrics } from '~/types'
+import type { Zone, ZoneWithMetrics } from '~/types/zone'
 
 export function useZones() {
   return useAsyncData('zones', () => $fetch<Zone[]>('/api/zones'), {
-    default: () => [],
+    default: () => [] as Zone[],
   })
 }
 

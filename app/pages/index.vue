@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import type { Zone, NotariadoStat } from '~/types'
+import type { Zone } from '~/types/zone'
+import type { NotariadoStat } from '~/types/notariado'
 
 useHead({ title: 'Inicio' })
 

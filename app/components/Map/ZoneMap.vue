@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Zone } from '~/types'
+import type { Zone } from '~/types/zone'
 
 const props = defineProps<{
   zones: Zone[]

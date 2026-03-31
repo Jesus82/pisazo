@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { PriceSnapshot } from '~/types'
+import type { PriceSnapshot } from '~/types/price'
 
 const props = defineProps<{
   priceHistory: PriceSnapshot[]

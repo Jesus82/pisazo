@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { NotariadoStat } from '~/types'
+import type { NotariadoStat } from '~/types/notariado'
 
 interface ZoneNotariado {
   name: string
