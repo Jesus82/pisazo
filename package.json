@@ -14,6 +14,9 @@
     "db:migrate": "drizzle-kit migrate",
     "db:push": "drizzle-kit push",
     "db:studio": "drizzle-kit studio",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
     "collect": "npx tsx scripts/collect.ts",
     "seed:zones": "npx tsx scripts/seed-zones.ts"
   },
@@ -40,8 +43,14 @@
   },
   "devDependencies": {
     "@nuxt/eslint": "^1.15.2",
+    "@nuxt/test-utils": "^4.0.0",
+    "@vitest/coverage-v8": "^4.1.2",
+    "@vue/test-utils": "^2.4.6",
     "dotenv": "^17.3.1",
     "drizzle-kit": "^0.31.10",
-    "eslint": "^10.1.0"
+    "eslint": "^10.1.0",
+    "happy-dom": "^20.8.9",
+    "jsdom": "^29.0.1",
+    "vitest": "^4.1.2"
   }
 }
