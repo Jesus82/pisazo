@@ -17,9 +17,13 @@ async function main() {
   console.log(`\n📊 Pisazo data collection — ${today}`)
   console.log('─'.repeat(50))
 
-  // Step 1: Collect Idealista listings
-  console.log('\n🏠 Step 1: Collecting Idealista listings...')
-  await collectIdealista(db, today)
+  // Step 1: Collect Idealista listings (requires API keys)
+  if (process.env.NUXT_IDEALISTA_API_KEY && process.env.NUXT_IDEALISTA_API_SECRET) {
+    console.log('\n🏠 Step 1: Collecting Idealista listings...')
+    await collectIdealista(db, today)
+  } else {
+    console.log('\n🏠 Step 1: Skipped — Idealista API keys not configured')
+  }
 
   // Step 2: Compute daily market metrics
   console.log('\n📈 Step 2: Computing market metrics...')
